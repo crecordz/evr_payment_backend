@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { YooCheckout } = require('@a2seven/yoo-checkout');
 const express = require('express');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
@@ -13,11 +13,11 @@ const { limiter } = require('./middlewares/limiter');
 const cors = require('./middlewares/cors');
 
 // База данных
-mongoose
-  .connect(DB_URL, {
-    useNewUrlParser: true,
-  })
-  .then(() => console.log('Connected to db'));
+// mongoose
+//   .connect(DB_URL, {
+//     useNewUrlParser: true,
+//   })
+//   .then(() => console.log('Connected to db'));
 
 const app = express();
 app.use(cors);
@@ -28,7 +28,6 @@ app.use(helmet());
 app.use(requestLogger); // подключаем логгер запросов
 app.use(limiter);
 
-const checkout = new YooCheckout({ shopId: 248028, secretKey: 'test_BIqQ4BhzerjH9ll9K7BOgmz4tJ9FpW3vnBLr9WktvT8' });
 
 app.use(cookieParser());
 
